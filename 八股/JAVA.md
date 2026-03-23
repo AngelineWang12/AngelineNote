@@ -317,6 +317,13 @@ JDK1.8之后改为了**尾插法**修复了这一问题
     
 - @Transactional
     
+### Spring中@Service、@Component、@Repository等注解区别是什么?
+- @Component：是一个通用的组件声明注解，表示该类是一个Spring组件
+- @Service：通常用于标记服务层的组件
+- @Repository：用于标记数据访问层的组件，这个注解除了将类标识为Spring组件之外，还能让Spring为它提供一些持久化特定的功能，比如异常转换。
+- @Controller：用于标记控制层的组件，这个注解通知Spring该类应当作为控制器处理HTTP请求。
+
+**这些注解在Spring框架中的主要区别在于它们的语义意图，在功能上几乎没有差异!**
 
 ### @Autowired与@Resource区别
 
@@ -329,7 +336,6 @@ JDK1.8之后改为了**尾插法**修复了这一问题
 - 依赖性：@Autowired需要Spring框架
     
 - 使用场景：如果需要细粒度的控制注入过程，推荐@Resource，否则@Autowired更常见，可以自动装配。`@Resource` 主要用于字段和方法上的注入，不支持在构造函数或参数上使用。
-    
 
 ### @Transactional
 
@@ -769,7 +775,7 @@ Java 的反射机制允许程序在运行时动态加载类并调用其方法，
 
 ```
 String className = "com.example.MyPlugin"; // 从配置文件读取
-Class<?> clazz = Class.forName(className); // 动态加载类
+Class<？> clazz = Class.forName(className); // 动态加载类
 Object instance = clazz.getDeclaredConstructor().newInstance(); // 创建实例
 ```
 
@@ -893,10 +899,11 @@ public class Person {    public void method() {      //......    }    public sta
 
 ## 动态代理
 
-  
+### JDK动态代理和CGLIB动态代理的区别
+使用JDK动态代理的对象必须实现一个或多个接口；而使用cglib代理的对象则无需实现接口，达到代理类无侵入，基于继承，运行时生成目标类的子类。
 
-### **对比两种代理**
-
+### 静态代理和动态代理的区别
+最大的区别就是静态代理是编译期确定的，但是动态代理却是运行期确定的。
 |   |   |   |
 |---|---|---|
 |**特性**|**静态代理**|**CGLIB****动态代理**|
@@ -1084,11 +1091,18 @@ public class G {
 
 可以，有两种方式，一种是使用**@Autowired**_**注解**__，一种是使用_**ApplicationContextAware**，
 
+## - 策略模式下如何自动注入 Map<String, Strategy>
+策略模式下可以利用 Spring 的依赖注入能力，直接注入 Map<String, Strategy>。Spring 会自动收集容器中所有 Strategy 实现类，key 是 BeanName，value 是对应策略对象。业务侧只需要根据类型从 Map 中取出对应策略执行即可，这样可以避免大量 if-else 或 switch。
+
+## @Service / @Component 是怎么被扫描注册的
+
+`@Service` 和 `@Component` 会被 `@ComponentScan` 扫描，因为 `@Service` 本质上是一个带有 `@Component` 的派生注解。Spring 在启动时通过 `ConfigurationClassPostProcessor` 解析配置类，调用扫描器把候选类解析为 `BeanDefinition`，然后注册到 `BeanDefinitionRegistry`，通常就是 `DefaultListableBeanFactory` 的 `beanDefinitionMap` 中。后续在容器刷新阶段再实例化 Bean，单例对象最终放入 `singletonObjects` 单例池。
+
 ## Bean 的生命周期了解么?(576/1759=32.7%)
 
-1. **创建Bean的实例**：Spring启动，查找并加载需要被Spring管理的bean，进行Bean实例化
+1. **创建Bean的实例**：Spring启动，查找（即扫描注册）并加载需要被Spring管理的bean，进行Bean实例化
     
-2. **Bean属性赋值/填充**：Bean实例化之后对将Bean的引用和值注入到Bean的属性中
+2. **Bean属性赋值/填充**：Bean实例化之后对将Bean的引用和值注入到Bean的属性中，populateBean() 属性注入
     
 3. **Bean初始化**：
     
@@ -2035,10 +2049,6 @@ class MyThread implements Runnable {
 
   
 
-### 在使用 CompletableFuture 的时候为什么要自定义线程池？
-
-  
-
 ### AQS 的原理是什么？
 [✅如何理解AQS？](https://www.yuque.com/hollis666/gg1x9v/qka9yt)
 AbstractQueuedSynchronizer(抽象队列同步器，以下简称AQS)
@@ -2491,6 +2501,97 @@ dump文件分析：Dump 文件是 Java 进程的内存镜像，其中主要包�
 ### 有了关系型数据库，为什么还需要NOSQL?
 
 NOSQL数据库**无需提前设计表结构**，数据可以根据需要自由地存储和组织，而且相对于关系型数据库，NOSQL高效灵活，非常适合那些复杂、高变化、高并发量得场景中。
+
+## SQL 中 UNION 和 JOIN 的区别
+
+### UNION 和 UNION ALL 的区别
+
+1. `UNION ALL`：直接合并多个结果集，**不过滤重复行**，性能通常更好。
+    
+2. `UNION`：合并后会做**去重**（等价于 `DISTINCT` 语义），通常比 `UNION ALL` 更慢。
+    
+3. 使用条件：
+    
+    1. 多个 `SELECT` 的列数必须一致；
+        
+    2. 对应列的数据类型需要兼容；
+        
+    3. 最终结果列名通常以第一条 `SELECT` 为准。
+        
+4. 面试回答建议：业务不要求去重时优先用 `UNION ALL`，只有明确需要唯一结果时再用 `UNION`。
+    
+示例：
+
+```sql
+SELECT name FROM t1
+UNION ALL
+SELECT name FROM t2;  -- 保留重复
+
+SELECT name FROM t1
+UNION
+SELECT name FROM t2;  -- 去重
+```
+
+### JOIN、LEFT JOIN、RIGHT JOIN 的区别
+
+1. `JOIN` 默认就是 `INNER JOIN`：只返回两张表**匹配成功**的行。
+    
+2. `LEFT JOIN`：返回左表全部行，右表匹配不上时右表列补 `NULL`。
+    
+3. `RIGHT JOIN`：返回右表全部行，左表匹配不上时左表列补 `NULL`。
+    
+4. `LEFT JOIN` 和 `RIGHT JOIN` 本质可以互换（交换左右表顺序即可）。
+    
+示例：
+
+```sql
+-- INNER JOIN：只保留匹配行
+SELECT *
+FROM A
+JOIN B ON A.id = B.a_id;
+
+-- LEFT JOIN：保留 A 全部行
+SELECT *
+FROM A
+LEFT JOIN B ON A.id = B.a_id;
+
+-- RIGHT JOIN：保留 B 全部行
+SELECT *
+FROM A
+RIGHT JOIN B ON A.id = B.a_id;
+```
+
+补充（高频追问）：
+
+- `LEFT JOIN` 时，针对右表的过滤条件优先写在 `ON` 中；如果写在 `WHERE`，可能把外连接效果“过滤掉”，结果接近内连接。
+
+### HAVING 和 WHERE 的区别
+
+1. `WHERE`：在**分组前**过滤原始数据，作用对象是一行一行的记录。
+    
+2. `HAVING`：在 `GROUP BY` **分组后**过滤结果，作用对象是分组后的结果集。
+    
+3. `WHERE` 一般不能直接使用聚合函数，如 `COUNT()`、`SUM()`、`AVG()`；`HAVING` 可以配合聚合函数使用。
+    
+4. 执行顺序可以理解为：`FROM -> WHERE -> GROUP BY -> HAVING -> SELECT -> ORDER BY`
+    
+5. 面试回答：`WHERE` 是对原始数据过滤，`HAVING` 是对分组后的结果过滤。
+    
+示例：
+
+```sql
+SELECT dept_id, COUNT(*) AS cnt
+FROM employee
+WHERE salary > 5000
+GROUP BY dept_id
+HAVING COUNT(*) > 5;
+```
+
+含义：
+
+- `WHERE salary > 5000`：先过滤原始员工数据
+- `GROUP BY dept_id`：再按部门分组
+- `HAVING COUNT(*) > 5`：最后筛选人数大于 5 的部门
 
 ## MySQL
 
@@ -3905,7 +4006,8 @@ LFU：最近加入的数据总是易于被剔除，早期的热点数据一直�
 ## 应用层
 
 ### HTTP
-
+#### GET与POST的区别
+**GET 的语义是从服务器获取指定的资源，POST 的语义是根据请求负荷（报文body）对指定的资源做出处理**，GET方法是安全且幂等的
 #### 状态码
 
 - 200：请求成功；
@@ -3929,7 +4031,7 @@ LFU：最近加入的数据总是易于被剔除，早期的热点数据一直�
     
 - 缓存处理：在 HTTP1.0 中主要使用 header 里的 If-Modified-Since,Expires 来做为缓存判断的标准，HTTP1.1 则引入了更多的缓存控制策略例如 Entity tag，If-Unmodified-Since, If-Match, If-None-Match 等更多可供选择的缓存头来控制缓存策略。
     
-- 连接方式：HTTP 1.0 为短连接，HTTP 1.1 支持长连接。HTTP 协议的长连接和短连接，实质上是 TCP 协议的长连接和短连接。
+- 连接方式：HTTP 1.0 为短连接，HTTP 1.1 支持长连接，**默认启用Keep-Alive**（连接复用）。HTTP 协议的长连接和短连接，实质上是 TCP 协议的长连接和短连接。
     
 - Host 头处理：HTTP/1.1 在请求头中加入了`Host`字段。
     
@@ -3940,11 +4042,11 @@ LFU：最近加入的数据总是易于被剔除，早期的热点数据一直�
 
 - **头部压缩**：HTTP 2.0会压缩头（Header），如果同时发出多个请求，他们的头是一样的或是相似的，那么，协议会帮你消除重复的部分。只发送索引号
     
-- 二进制格式：HTTP 1.1纯文本报文，HTTP 2.0二进制格式
+- **二进制格式**：HTTP 2.0会将所有传输的信息分割为更小的消息和帧，并采用二进制格式编码
     
-- 并发传输：引入了stream概念，多个stream复用在一条TCP连接，解决了HTTP/1.1 队头阻塞的问题
+- **并发传输**：引入了stream概念，多个stream复用在一条TCP连接，**解决了HTTP/1.1 队头阻塞的问题**
     
-- 服务器主动推送资源：服务端不再是被动地响应，可以主动向客户端发送消息
+- **服务器主动推送资源**：服务端不再是被动地响应，可以主动向客户端发送消息
     
 
 #### http和https的区别
@@ -4095,9 +4197,18 @@ ISN=M + F(localhost, localport, remotehost, remoteport)。
 2. 服务器完全宕机（断电 / 系统崩溃），客户端处理：依赖 TCP 的**超时重传机制**和应用层**心跳检测**：
     
 
-### TCP超时重传
+### 滑动窗口
+[4.2 TCP 重传、滑动窗口、流量控制、拥塞控制 | 小林coding | Java面试学习](https://xiaolincoding.com/network/3_tcp/tcp_feature.html#%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3)
+> 引入窗口概念的原因
+TCP 是每发送一个数据，都要进行一次确认应答。当上一个数据包收到了应答了， 再发送下一个，这种方式的缺点是效率比较低。
+有了窗口，就可以指定窗口大小，窗口大小就是指**无需等待确认应答，而可以继续发送数据的最大值**。
+> 窗口大小由哪一方决定
+通常由接收方的窗口大小决定，在tcp头里有一个字段叫window也就是窗口大小。
+> 发送方的滑动窗口
+#### 累计确认
+假设窗口大小为 `3` 个 TCP 段，那么发送方就可以「连续发送」 `3` 个 TCP 段，并且中途若有 ACK 丢失，可以通过「下一个确认应答进行确认」。
+![[Pasted image 20260323183403.png]]
 
-  
 
 ### 拥塞控制
 
@@ -4612,7 +4723,7 @@ jstack
 
 ### 消息队列如何选型
 
-![](https://my.feishu.cn/space/api/box/stream/download/asynccode/?code=ZmVmNTY4OThlN2UxMGQ4NDk3MmE0ZmE5ZjEyZTlkYjhfeUY3bjdZdDFFQjVEWG1JaHJZNHhxWUwzYTQ0S1pwVU5fVG9rZW46QmdUc2JaMlN2b3c0NFd4Qzhqc2N1dkUwbkpiXzE3NzM2NDk5MDU6MTc3MzY1MzUwNV9WNA)
+![[Pasted image 20260322233022.png]]
 
 1.性能和吞吐量:如果需要处理海量数据，需要高性能和高吞吐量，那么Kafka是一个不错的选择。
 
@@ -4676,12 +4787,33 @@ https://blog.csdn.net/weixin_42222436/article/details/123155310
         
 
 ### 消息队列幂等性如何设计
+[✅RabbitMQ如何防止重复消费](https://www.yuque.com/hollis666/gg1x9v/epqupbq473z9mkew)
+一锁二判三更新
+一锁：第一步，先加锁。可以加分布式锁、或者悲观锁都可以。但是一定要是一个互斥锁!
+二判：第二步，进行幂等性判断。可以基于状态机、流水表、唯一性索引等等进行重复操作的判断。
+三更新：第三步，进行数据的更新，将数据进行持久化。
+```
+//一锁：先加一个分布式锁
+@DistributeLock(scene = "OEDER", keyExpression = "#request.identifier", expire = 3000)
+public OrderResponse apply(OrderRequest request) {
+    OrderResponse response = new OrderResponse();
+    //二判：判断请求是否执行成功过
+    OrderDTO orderDTO = orderService.queryOrder(request.getProduct(), request.getIdentifier());
+    if (orderDTO != null) {
+        response.setSuccess(true);
+        response.setResponseCode("DUPLICATED");
+        return response;
+    }
 
+    //三更新：执行更新的业务逻辑
+    return orderService.order(request);
+}
+```
 重复消费会怎样？重复消费的危害取决于业务场景是否 “幂等”（即 “重复执行同一操作，结果与执行一次一致”）危害：库存重复扣减、数据重复插入、金额计算错误、资源浪费。
 
 - 唯一标识：全局唯一id（通用方案）
     
-- 数据库事务+乐观锁：通过本号或状态字段控制并发更新
+- 数据库事务+乐观锁：通过版本号或状态字段控制并发更新
     
 - 数据库唯一约束：（贴合业务）
     
@@ -4694,7 +4826,39 @@ https://blog.csdn.net/weixin_42222436/article/details/123155310
 
 兜底：为 RocketMQ 配置死信队列监控（如通过 Prometheus 采集死信消息数量，设置告警阈值），当死信消息超过 10 条时触发告警；开发死信消息补偿程序（如定时任务），对死信消息进行人工审核或自动重试（如确认是网络问题导致的重复，可重新投递），确保核心业务消息不丢失。
 
+### 投递语义(kafka)
+[✅为什么Kafka没办法100%保证消息不丢失？](https://www.yuque.com/hollis666/gg1x9v/vwy7vz63qax9c7ab)
+Kafka提供的Producer和Consumer之间的消息传递保证语义有三种，所谓消息传递语义，其实就是Kafka的消息交付可靠保障，主要有以下三种:
+- Atmost once（至多一次）一消息可能会丢，但绝不会重复传递;
+- At least once（至少一次）（默认）一消息绝不会丢，但可能会重复传递;
+- Exactly once（精确一次）一每条消息只会被精确地传递一次：既不会多，也不会少;
+
 ## RabbitMQ
+### 数据存储结构
+[深度解析RabbitMQ网络存储与生产消费核心架构-开发者社区-阿里云](https://developer.aliyun.com/article/1409948)
+1. RabbitMQ消息有两种类型：持久化和非持久化消息
+2. RabbitMQ 的存储模块也包含元数据存储与消息数据存储两部分。
+3. 消息数据存储：**RabbitMQ 消息数据的最小存储单元是 Queue**
+![[Pasted image 20260322175900.png]]
+![[Pasted image 20260322175938.png]]
+- Queue：逻辑概念，表示一条消息队列，负责消息顺序、投递状态、ack 状态。
+- rabbit_queue_index：每个队列各自有一份索引文件，记录“这个队列里有哪些消息、顺序是什么、消息状态怎样、消息体在哪里”。
+- rabbitmq_msg_store：共享消息存储，不是按队列分开的，通常同一 vhost 下多个队列共用。追加写
+- msg_store_persistent / msg_store_transient：共享消息存储再按“持久化消息/非持久化消息”分成两套。
+
+msg_store可以粗略理解成键值对形式保存：
+- key：消息 ID / 消息在存储中的标识
+- value：消息体内容
+
+**一条消息从写入到消费，结构关系是这样的**
+
+生产者发来消息后：
+
+1. RabbitMQ 先把消息体写到共享 msg_store
+2. 如果路由到多个队列，就给每个队列各写一条 queue index 记录
+3. 消费某个队列时，RabbitMQ 先看这个队列自己的 queue index
+4. 再根据索引去 msg_store 找到消息体
+5. 当所有引用它的队列都确认删除后，msg_store 里的消息体才真正可清理
 
 ### 工作模式
 
@@ -4748,6 +4912,12 @@ Demo 级别的，一般就是你本地启动了玩玩儿的?，没人生产用�
 
 这样的好处在于，你任何一个机器宕机了，没事儿，其它机器（节点）还包含了这个 queue 的完整数据，别的 consumer 都可以到其它节点上去消费数据。坏处在于，第一，这个性能开销也太大了吧，消息需要同步到所有机器上，导致网络带宽压力和消耗很重！RabbitMQ 一个 queue 的数据都是放在一个节点里的，镜像集群下，也是每个节点都放这个 queue 的完整数据。
 
+### rabbitMQ如何实现延迟消息?
+给消息设定一个ttl，（投递到一个普通队列当中）但不消费这个消息，等它过期，这个消息会进入私信队列，然后再监听死信队列的消息进行消费。
+RabbitMQ中的ttl可以设置任意时长，比RocktetMQ只支持一些固定的时长更加灵活。
+#### 存在问题
+可能造成队头阻塞，因为mq会定时检查队头的消息是否过期，但不会逐个检查队列中的所有消息是否过期
+也有相应的延迟消息插件实现
 ## 零拷贝技术
 
 ### 如何实现零拷贝技术
