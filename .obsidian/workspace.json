@@ -8,20 +8,35 @@
         "type": "tabs",
         "children": [
           {
-            "id": "269092c120bc572b",
+            "id": "e293eb6bb942126c",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "八股/JAVA.md",
-                "mode": "preview",
+                "file": "量化/测试-沪深300.md",
+                "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "JAVA"
+              "title": "测试-沪深300"
+            }
+          },
+          {
+            "id": "8d73f2b7aa75dba5",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "八股/AI.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "AI"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -78,8 +93,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 200,
-    "collapsed": true
+    "width": 200
   },
   "right": {
     "id": "a5860abb9cb1ec13",
@@ -157,13 +171,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "八股/JAVA.md",
+                "file": "八股/AI.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "JAVA 的大纲"
+              "title": "AI 的大纲"
             }
           },
           {
@@ -206,17 +220,33 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "dd8f747a2549782a",
+  "active": "8d73f2b7aa75dba5",
   "lastOpenFiles": [
-    "Pasted image 20260323183403.png",
-    "Pasted image 20260322233022.png",
-    "Pasted image 20260322175938.png",
-    "Pasted image 20260322175900.png",
-    "面试/面试记录.md",
+    "github-recovery-codes.md",
+    "量化/测试-沪深300.md",
+    "png/Pasted image 20260531004916.png",
+    "png/Pasted image 20260531003904.png",
+    "png/Pasted image 20260531003855.png",
+    "png/Pasted image 20260531003633.png",
+    "png/Pasted image 20260531003409.png",
+    "量化/MA20_MA60策略笔记.md",
+    "量化",
+    "未命名.base",
+    "毕业论文/大纲.md",
+    "平常怎么写prompt.md",
+    "毕业论文",
     "八股/JAVA.md",
+    "八股/AI.md",
+    "八股/SQL题解.md",
+    "png/Pasted image 20260327214932.png",
+    "png/Pasted image 20260326234106.png",
+    "png/Pasted image 20260326233855.png",
+    "png/Pasted image 20260326233830.png",
+    "png/Pasted image 20260326184536.png",
+    "png",
+    "面试/面试记录.md",
     "copilot/copilot-conversations/-_@Service_@Component_是怎么被扫描注册的@20260318_200257.md",
     "copilot/copilot-conversations",
-    "Pasted image 20260318002934.png",
     "copilot/copilot-custom-prompts/Clip Web Page.md",
     "copilot/copilot-custom-prompts/Clip YouTube Transcript.md",
     "copilot/copilot-custom-prompts/Rewrite as tweet thread.md",
@@ -238,12 +268,6 @@
     "八股/项目-拼团.md",
     "未命名.canvas",
     "未命名 1.base",
-    "八股/场景题.md",
-    "八股/美的.md",
-    "八股/AI.md",
-    "未命名.base",
-    "欢迎.md",
-    "Pasted image 20260316161441.png",
     "八股"
   ]
 }

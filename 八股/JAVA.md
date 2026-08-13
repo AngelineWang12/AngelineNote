@@ -63,9 +63,7 @@
 `final`关键字主要有以下三个方面的作用：用于修饰类、方法和变量。
 
 类不能被继承、方法不能被重写、变量值不能修改
-
-![](https://my.feishu.cn/space/api/box/stream/download/asynccode/?code=YWVkZGY0MGZmOTJhYmExNzY4MzlhN2I4NGU4NTQyYzVfWnpPbzFUVWhFcmY3Nm01MlZZNVRzUTVVRGQ0bHdLR0JfVG9rZW46RGV4ZmJ0Y1h4b3dsRXh4QWgwZmNaS3p5bk1jXzE3NzM2NDkxOTg6MTc3MzY1Mjc5OF9WNA)
-
+![[Pasted image 20260326184536.png]]
 ## finally关键字
 
 Java 异常处理的关键字，只能用于 try-catch 语句块中
@@ -135,7 +133,7 @@ final 用于限制修改，finally 用于异常中的资源释放，finalize 用
         
         - 过滤：`filter(Predicate)`（如筛选列表中大于 10 的元素）；
             
-        - 映射：`map(Function)`（如将 List<String>转为 List<Integer>）、`flatMap(Function)`（如将 List<List<String>> 拆分为单个 String 的 Stream）；
+        - 映射：`map(Function)`（如将 `List<String>` 转为 `List<Integer>`）、`flatMap(Function)`（如将 `List<List<String>>` 拆分为单个 `String` 的 `Stream`）；
             
         - 排序：`sorted()`（自然排序）、`sorted(Comparator)`（自定义排序，如按对象属性排序）；
             
@@ -152,9 +150,6 @@ final 用于限制修改，finally 用于异常中的资源释放，finalize 用
         - 统计：`count()`（元素个数）、`max(Comparator)`/`min(Comparator)`（最大 / 小元素）；
             
         - 遍历：`forEach(Consumer)`（遍历元素执行操作）。
-
-
-
 
 # JAVA集合
 
@@ -671,7 +666,7 @@ Java 是一门面向对象的语言，很多场景需要将数据封装成对象
 
 ## 什么是泛型？有什么作用？(501/1759=28.5%)
 
-**Java** **泛型****（Generics）** 是 JDK 5 中引入的一个新特性。使用泛型参数，可以增强代码的可读性以及稳定性。
+**Java** **泛型****（Generics） 是 JDK 5 中引入的一个新特性。使用泛型参数，可以增强代码的可读性以及稳定性。
 
 编译器可以对泛型参数进行检测，并且通过泛型参数可以指定传入的对象类型。比如 `ArrayList<Person> persons = new ArrayList<Person>()` 这行代码就指明了该 `ArrayList` 对象只能传入 `Person` 对象，如果传入其他类型的对象就会报错。
 
@@ -679,11 +674,11 @@ Java 是一门面向对象的语言，很多场景需要将数据封装成对象
 
 第一点是提高代码的复用性，它允许我们编写与类型无关的通用代码。
 
-第二点是增强类型安全性**，**在没有泛型的情况下，集合类（如 ArrayList）默认存储的是 Object 类型，取出元素时需要手动进行类型转换，容易引发 ClassCastException。而泛型在编译时就会进行类型检查，避免了运行时的类型错误。
+第二点是增强类型安全性，**在没有泛型的情况下，集合类（如 ArrayList）默认存储的是 Object 类型，取出元素时需要手动进行类型转换，容易引发 ClassCastException。而泛型在编译时就会进行类型检查，避免了运行时的类型错误。
 
-第三点是简化代码**，**使用泛型后，我们无需显式地进行类型转换，减少了冗余代码，提高了代码的可读性和维护性。
+第三点是简化代码，**使用泛型后，我们无需显式地进行类型转换，减少了冗余代码，提高了代码的可读性和维护性。
 
-第四点是支持复杂的类型约束**，**泛型可以通过通配符（如 ? extends T 和 ? super T）实现更复杂的类型限制，满足特定场景下的需求。
+第四点是支持复杂的类型约束，**泛型可以通过通配符（如 ? extends T 和 ? super T）实现更复杂的类型限制，满足特定场景下的需求。
 
 ### [泛型的使用方式有哪几种？](https://javaguide.cn/java/basis/java-basic-questions-03.html#%E6%B3%9B%E5%9E%8B%E7%9A%84%E4%BD%BF%E7%94%A8%E6%96%B9%E5%BC%8F%E6%9C%89%E5%93%AA%E5%87%A0%E7%A7%8D)
 
@@ -708,7 +703,7 @@ public class Generic<T>{
 }
 ```
 
-**2.****泛型****方法**：通过在方法返回值前添加类型参数（如 <T>）来定义泛型方法。
+**2.****泛型****方法**：通过在方法返回值前添加类型参数（如 `<T>`）来定义泛型方法。
 
 ```java
    public static < E > void printArray( E[] inputArray )
@@ -745,7 +740,7 @@ printArray( stringArray  );
 
 反射（Reflection）是 Java 中一种强大的机制，它允许程序在运行时动态地获取类的信息并操作类的属性、方法和构造器。接下来我会详细解释反射的定义和应用场景。
 
-首先说一下什么是反射**，**
+首先说一下什么是反射，
 
 反射是一种在运行时动态获取类信息的能力。通过反射，我们可以在程序运行时加载类、获取类的结构（如字段、方法、构造器等），甚至可以调用类的方法或修改字段的值。
 
@@ -859,7 +854,7 @@ public class Person {    public void method() {      //......    }    public sta
 
 **2、访问类成员是否存在限制**
 
-静态方法在访问本类的成员时，只允许访问静态成员（即静态成员变量和静态方法），不允许访问实例成员（即实例成员变量和实例方法），而实例方法不存在这个限制。
+静态方法在访问本类的成员时，只允许访问静态成员（即静态成员变量和静态方法），（即实例成员变量和实例方法），而实例方法不存在这个限制。
 
 
 # Spring
@@ -955,7 +950,7 @@ IOC的优点：
 
 ### Bean获取方式：
 
-1. 编写spring.xmls文件，指定<beans>种pojo类的路径，会自动调用无参构造器构建bean
+1. 编写 `spring.xml` 文件，指定 `<beans>` 中 pojo 类的路径，会自动调用无参构造器构建 bean
     
     ![](https://my.feishu.cn/space/api/box/stream/download/asynccode/?code=YTE5MDU3MjljZmU3YzFiNWE2YzgwYTU2Y2NjMDI3NjhfNmNWNlYyZjlzMnVzYnBOT2VWSDFDRFpkYVVRbExBaEtfVG9rZW46VHFaMGJNQXFSb01KNnJ4bkJtS2N5dGpkbkNoXzE3NzM2NDk1OTc6MTc3MzY1MzE5N19WNA)
     
@@ -1089,10 +1084,10 @@ public class G {
 
 ## Spring 可以在一个 Bean 里面再注入自己吗
 
-可以，有两种方式，一种是使用**@Autowired**_**注解**__，一种是使用_**ApplicationContextAware**，
+可以，有两种方式，一种是使用**@Autowired**_**注解**__，一种是使用ApplicationContextAware，
 
-## - 策略模式下如何自动注入 Map<String, Strategy>
-策略模式下可以利用 Spring 的依赖注入能力，直接注入 Map<String, Strategy>。Spring 会自动收集容器中所有 Strategy 实现类，key 是 BeanName，value 是对应策略对象。业务侧只需要根据类型从 Map 中取出对应策略执行即可，这样可以避免大量 if-else 或 switch。
+## - 策略模式下如何自动注入 `Map<String, Strategy>`
+策略模式下可以利用 Spring 的依赖注入能力，直接注入 `Map<String, Strategy>`。Spring 会自动收集容器中所有 `Strategy` 实现类，key 是 BeanName，value 是对应策略对象。业务侧只需要根据类型从 `Map` 中取出对应策略执行即可，这样可以避免大量 `if-else` 或 `switch`。
 
 ## @Service / @Component 是怎么被扫描注册的
 
@@ -1164,6 +1159,7 @@ AOP能够将那些与业务无关，却为业务模块所共同调用的逻辑�
     
 - 声明式事务：通过在配置文件中声明事务的切入点和通知等信息来自动控制事务的行为
     
+**声明式（`@Transactional`）优点是代码侵入性小，缺点是**粒度太大（只能作用于方法级别）**，如果方法里有耗时的 RPC 调用或长查询，会导致数据库长事务、占用连接池；编程式事务（如 `TransactionTemplate`）优点是**粒度小**，可以精确包裹必须原子的几行 SQL 代码，缺点是代码侵入性强。
 
 ### 事务的传播
 
@@ -1263,7 +1259,11 @@ Spring Boot 只是简化了配置，如果你需要构建 MVC 架构的 Web 程�
     
 - Spring Boot 默认集成了多种内嵌服务器，无需额外配置，即可将应用打包成可执行的 JAR 文件
     
-
+## Springboot的starter？
+> Starter 是一组依赖 + 自动配置的封装
+1.  `spring-boot-starter-web` ：是用来开发 Web 应用的，里面集成了 Spring MVC、内嵌 Tomcat 和 JSON 解析等组件，可以开箱即用地写接口；
+只需要写：`@RestController`就能直接提供接口，不用自己配 servlet、web.xml
+2. `spring-boot-starter-test`：用来写 **测试代码** 的 starter，是测试依赖，包含 JUnit、Mockito 等工具，并且如果添加scope 是 test，只在测试阶段生效，不会打进生产包。
 ## SpringBoot的原理？自动装配？
 
 自动装配就是通过注解或一些简单的配置就可以在SpringBoot的帮助下开启和配置各种功能，比如数据库访问、Web开发。
@@ -1282,9 +1282,6 @@ Spring Boot 只是简化了配置，如果你需要构建 MVC 架构的 Web 程�
         
 4. 条件判断: 对于每一个发现的自动配置类，`AutoConfigurationImportSelector` 会使用条件判断机制（通常是通过 `@ConditionalOnXxx`注解）来确定是否满足导入条件。
     
-
-  
-
 5. AutoConfigurationImportSelector 是**导入自动配置类**，不是直接实例化 Bean。 Bean 最终由这些配置类里的 @Bean、@Import 等注册。
     
 6. spring.factories 这个说法对 **Spring Boot 2.x** 正确； 如果面试官提 Boot 3，要补一句：主要用 AutoConfiguration.imports。
@@ -2261,7 +2258,11 @@ JDK 1.2 后，`loadClass()`已强制双亲委派（先委托父类），但开�
     
 - 运行时常量池：**方法区**的一部分，用于存放编译期生成的各种字面量和符号引用
     
+## JAVA对象都在堆上吗？
+new对象时，首先会进行逃逸分析，未逃逸，则jvm可能会通过对象拆分将其分配到栈上，随栈桢弹出释放，否则在堆上分配。
 
+创建对象时，编译器会对对象进行逃逸分析，未发生逃逸的，会进行标量替换，将其拆分成若干个独立的局部变量放入栈中，随**栈帧**弹出释放（虚拟机栈内部有，局部变量表，操作数栈，动态链接，方法返回地址）。发生逃逸的，存入堆中。
+什么是逃逸分析：是编译器的一种静态代码分析技术，判断当前**对象的生命周期是否仅仅存在于当前方法。
 ## 从编写 Java 代码层面说说怎么减少内存碎片
 
 1. 避免频繁创建短命小对象 内存碎片多由大量短命小对象频繁创建和回收导致
@@ -2464,6 +2465,9 @@ G1收集器根据**历史回收数据**构建一个预测模型，预测在给�
 |核心优势|并发收集，低延迟。|可预测停顿，无碎片，适合大内存服务器。|
 |致命弱点|产生大量碎片，导致 Full GC；对 CPU 敏感。|内存占用（Footprint）比 CMS 高。|
 
+### ZGC
+极低延迟，支持超大堆
+GC算法：并发标记-整理+可扩展的区域分配
 ## STW的线程挂起机制
 
 GC 设全局标志 $$\rightarro$$ 业务线程轮询 $$\rightarro$$ 业务线程跑到最近的**安全点**主动挂起 $$\rightarro$$ GC 凑齐所有线程进入等待屏障 $$\rightarro$$ 执行回收
@@ -2564,6 +2568,10 @@ RIGHT JOIN B ON A.id = B.a_id;
 补充（高频追问）：
 
 - `LEFT JOIN` 时，针对右表的过滤条件优先写在 `ON` 中；如果写在 `WHERE`，可能把外连接效果“过滤掉”，结果接近内连接。
+#### 表连接算法
+1. Nested Loop Join：小表驱动大表
+2. Merge Join：有序数据，类似归并
+3. Hash Join：用 hash 表匹配，适用于大数据量
 
 ### HAVING 和 WHERE 的区别
 
@@ -2630,10 +2638,23 @@ MySQL的架构共分为两层：Server层和存储引擎层
     3. 执行
         
 
-![](https://my.feishu.cn/space/api/box/stream/download/asynccode/?code=NzEwMmM1NDQ2ZTZiMzY3YzIwODQyYjY0ZmI0YjJhMGJfbk43VVJIT0J3a3FQWUNHU1kxcUR0MDRieTIyVlp5NGpfVG9rZW46TkxrZ2J2VlMyb3VnTWx4UjVvVWNZNThMbmRmXzE3NzM2NDk3NTg6MTc3MzY1MzM1OF9WNA)
-
+### InnoDB和MyISAM有什么区别?
+|        | InnoDB              | MyISAM   |
+|--------|---------------------|----------|
+| 事务   | 支持                | 不支持   |
+| 外键   | 支持                | 不支持   |
+| 聚簇索引 | 支持              | 不支持   |
+| 锁级别 | 支持行级锁、表级锁   | 表级锁   |
+| 行数保存 | 不支持            | 支持     |
+| 默认版本 | 5.5 之后          | 5.5 之前 |
+| 全文索引 | 5.6以后支持       | 支持     |
 ### 索引
-
+### 索引、联合索引设置要考虑什么问题
+1. 最左匹配原则
+2. 查询场景：要结合 `where`、`order by`、`group by` 一起看，不是只看单个字段。
+3. 覆盖索引：查询直接命中索引返回，减少回表
+4. 更新成本：更新频繁的字段、区分度很低的字段，不建议构建索引
+5. 补充：等值匹配优先于范围查询，避免索引失效（函数运算，隐式类型转换，%）
 #### 索引失效问题怎么排查
 
 通过explain分析sql语句，查看其执行计划，主要关注type，key和extra
@@ -3042,7 +3063,7 @@ MySQL调优主要分为三个步骤：监控报警、 排查慢SQL、MySQL调优
 
 ##### （2）游标批量查询的优化（以 MySQL 为例）
 
-- **游标****批量查询原理**：通过游标（Cursor）按批次读取大表数据（如每次读 10 条），避免一次性加载全表数据导致内存溢出，适合数据量百万级以上的场景。
+- **游标批量查询原理**：通过游标（Cursor）按批次读取大表数据（如每次读 10 条），避免一次性加载全表数据导致内存溢出，适合数据量百万级以上的场景。
     
 - **原始流程与问题**：
     
@@ -3064,7 +3085,25 @@ MySQL调优主要分为三个步骤：监控报警、 排查慢SQL、MySQL调优
         
         1. 记录已读取的数据总数，当已读取数≥总数据量时退出（总数据量可提前通过 `SELECT COUNT(*) FROM order` 获取，但需注意数据实时变化的问题）。
             
-
+#### 分库分表怎么分？哪些字段不能分？
+先看瓶颈是容量还是并发，再决定分库、分表还是都分。
+- 分库：解决并发连接过多，单机mysql扛不住的问题
+- 分表：为了解决单表数据量太大，导致查询性能下降的问题。
+**怎么分？**
+- 水平分片：按某个分片键把同结构的数据拆开，比如：
+	- 按 `user_id`
+	- 按 `order_id`
+	- 按 `tenant_id`
+	- 按时间
+	比如订单表量很大，一般优先考虑按 `user_id` 或者 `buyer_id` 分，因为很多查询天然就是“查某个用户的订单”。
+- 垂直拆分：把不同业务或冷热字段拆开。比如用户中心、订单中心、库存中心分不同库；或者订单主表和订单扩展表拆开。
+**哪些字段不能乱分**
+1. 经常改的字段：分片键一旦修改，数据迁移成本很高
+2. 分布不均的字段：比如性别、省份，很容易热点
+3. 与查询维度不一致的字段：比如按`user_id` 分，但系统大多数是按 `order_no` 查
+4. 范围查询特别多但离散性差的字段（比如性别离散型就很差，只有男女，`user_id`高离散，每个人都不同）因为这类字段无法把查询路由到单个分片
+5. 业务上可能为空的字段：空值分片很麻烦
+分片键优选：稳定、高基数、分布均匀、查询经常用、尽量不修改的字段
 #### 慢SQL
 
 查询速度很慢，解决方案：
@@ -3078,10 +3117,6 @@ MySQL调优主要分为三个步骤：监控报警、 排查慢SQL、MySQL调优
 - 优化查询语句：避免使用select *，使用覆盖索引，联表查询要用小表驱动大表，被驱动的字段要有索引
     
 - 分库分表：可以从垂直（纵向）和 水平（横向）两种纬度进行拆分
-    
-    - 分库：解决并发连接过多，单机mysql扛不住的问题
-        
-    - 分表：为了解决单表数据量太大，导致查询性能下降的问题。
         
 - 分页优化：深分页查询优化，
     
@@ -3499,7 +3534,9 @@ Redisson基于RedLock算法，提供了以下增强功能：
 ##### Redisson原理
 
 [弄懂Redis的儿子Redisson，只需这个15问题-阿里云开发者社区](https://developer.aliyun.com/article/1365378)
-
+##### watchdog
+Watchdog 的触发条件是：线程成功拿到锁，并且**没有显式传 leaseTime**（如果制定了锁的租期时间，会导致看门狗失效）。此时框架会给这把锁注册一个后台续期任务，默认 watchdog 超时是 30 秒，看门狗线程会在后台每隔十秒检查一次，如果业务逻辑还没执行完，就把锁的 TTL 延期到30s。调用`unlock()`后会取消续期，并通过 Pub/Sub 通知等待队列里的线程重新竞争锁。  
+如果我自己实现，我会用 Lua 保证加锁、重入、解锁原子性；用 ownerId 防止误解锁和误续期；用调度线程池维护续期任务；等待线程不自旋，而是挂在本地阻塞队列并结合 Redis Pub/Sub 唤醒。这样既能保证长任务不提前过期，也能在进程宕机后靠 TTL 自动释放。
 ### redis中删除一个key后整个过程是怎么样的？是否 “删除完立马在内存里删除”
 
 - DEL 命令：是，同步删除会立即释放内存（但大键可能阻塞主线程）。
@@ -3840,6 +3877,11 @@ SELECT * FROM users WHERE username = ? AND password = ?
 
 内存分段和内存分页并不是对立的，可以先分段再分页，实现段页式内存管理
 
+## read和write过程
+- `read`：用户态发起系统调用，CPU从用户态切换到内核态，内核先查看页缓存Page Cache里有没有对应数据，如果已经在页缓存里，直接把数据从内核页缓存拷贝到用户缓冲区buf，如果缓存未命中，内核就要发起磁盘IO，当前进程通常会阻塞，然后再拷贝到用户缓冲区，最后CPU从内核态回到用户态。
+- `write`：用户态切到内核态，把数据从用户缓冲区拷贝到内核也缓存，然后把相应页标记为脏页dirty page，异步刷盘，返回用户态。
+
+
 ## 零拷贝
 
 主要实现方式有两种：
@@ -3851,7 +3893,7 @@ SELECT * FROM users WHERE username = ? AND password = ?
 
 **mmap****+write**
 
-`mmap()` 系统调用函数会直接把内核缓冲区里的数据「**映射**」到用户空间，这样，操作系统内核与用户空间就不需要再进行任何的数据拷贝操作。
+`mmap()` （memory map内存映射）系统调用函数会直接把内核缓冲区里的数据「**映射**」到用户空间，这样，操作系统内核与用户空间就不需要再进行任何的数据拷贝操作。
 
 具体过程如下：
 
@@ -3865,6 +3907,7 @@ SELECT * FROM users WHERE username = ? AND password = ?
 通过使用 `mmap()` 来代替 `read()`， 可以减少一次数据拷贝的过程。
 
 但这还不是最理想的零拷贝，因为仍然需要通过 CPU 把内核缓冲区的数据拷贝到 socket 缓冲区里，而且仍然需要 4 次上下文切换，因为系统调用还是 2 次。
+![[Pasted image 20260326233830.png]]
 
 **sendfile**
 
@@ -3873,9 +3916,8 @@ SELECT * FROM users WHERE username = ? AND password = ?
 - 第一步，通过 DMA 将磁盘上的数据拷贝到内核缓冲区里；
     
 - 第二步，缓冲区描述符和数据长度传到 socket 缓冲区，这样网卡的 SG-DMA 控制器就可以直接将内核缓存中的数据拷贝到网卡的缓冲区里，此过程不需要将数据从操作系统内核缓冲区拷贝到 socket 缓冲区中，这样就减少了一次数据拷贝；
-    
+![[Pasted image 20260326234106.png]]
 
-![](https://my.feishu.cn/space/api/box/stream/download/asynccode/?code=YmYwNmYyM2QzZGU5ZDRiYjQ4OGFjZTRhNWQ3N2I5YzFfNE53TnVGenNwd3ZmOE1kNm55WlFkRWp5SDZoSGtwUVJfVG9rZW46Qk9PZGJzVFVUb0JNQXF4bU83WmN0UXBJbldoXzE3NzM2NDk4NTg6MTc3MzY1MzQ1OF9WNA)
 
 ## 线程进程
 
@@ -4047,6 +4089,13 @@ LFU：最近加入的数据总是易于被剔除，早期的热点数据一直�
 - **并发传输**：引入了stream概念，多个stream复用在一条TCP连接，**解决了HTTP/1.1 队头阻塞的问题**
     
 - **服务器主动推送资源**：服务端不再是被动地响应，可以主动向客户端发送消息
+
+HTTP/3
+- 使用**QUIC**协议(基于UDP)替代 TCP。QUIC不仅仅承担了传输层协议的职责，还具备了TLS的安全性相关能力
+- **消除了TCP层的队头阻塞**。
+- 支持**0-RTT建连**，极大降低连接延迟。
+- 更安全：**强制加密传输**。
+- 更适应现代网络(如移动网络、弱网)
     
 
 #### http和https的区别
