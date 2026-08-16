@@ -27,12 +27,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "许继电气入职学习/01-电路分析/例题01-电压源与电流源的功率判断.md",
+                "file": "github-recovery-codes.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "例题01-电压源与电流源的功率判断"
+              "title": "github-recovery-codes"
             }
           },
           {
@@ -137,20 +137,6 @@
             }
           },
           {
-            "id": "e245bf60cde55f5c",
-            "type": "leaf",
-            "state": {
-              "type": "outgoing-link",
-              "state": {
-                "file": "八股/JAVA.md",
-                "linksCollapsed": false,
-                "unlinkedCollapsed": true
-              },
-              "icon": "links-going-out",
-              "title": "JAVA 的出链列表"
-            }
-          },
-          {
             "id": "15115298a51084b5",
             "type": "leaf",
             "state": {
@@ -185,7 +171,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "许继电气入职学习/01-电路分析/例题01-电压源与电流源的功率判断.md",
+                "file": "github-recovery-codes.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
@@ -215,7 +201,7 @@
             }
           }
         ],
-        "currentTab": 6
+        "currentTab": 5
       }
     ],
     "direction": "horizontal",
@@ -235,13 +221,13 @@
       "obsidian-excalidraw-plugin:新建绘图文件": false
     }
   },
-  "active": "dd8f747a2549782a",
+  "active": "8d73f2b7aa75dba5",
   "lastOpenFiles": [
+    "许继电气入职学习/01-电路分析/例题01-电压源与电流源的功率判断.md",
     "许继电气入职学习/00-学习索引.md",
     "许继电气入职学习/01-电路分析/00-电路分析索引.md",
     "许继电气入职学习/01-电路分析/02-电容的动态特性、记忆性与储能.md",
     "许继电气入职学习/01-电路分析/01-电感的动态特性、记忆性与储能.md",
-    "许继电气入职学习/01-电路分析/例题01-电压源与电流源的功率判断.md",
     "许继电气入职学习/02-电容的动态特性、记忆性与储能.md",
     "许继电气入职学习/01-电路分析",
     "99-系统资源/Excalidraw",
