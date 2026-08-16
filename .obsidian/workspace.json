@@ -185,13 +185,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "八股/AI.md",
+                "file": "许继电气入职学习/01-电路分析/例题01-电压源与电流源的功率判断.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "AI 的大纲"
+              "title": "大纲"
             }
           },
           {
@@ -200,8 +200,8 @@
             "state": {
               "type": "copilot-chat-view",
               "state": {},
-              "icon": "lucide-ghost",
-              "title": "copilot-chat-view"
+              "icon": "message-square",
+              "title": "Copilot"
             }
           },
           {
@@ -235,7 +235,7 @@
       "obsidian-excalidraw-plugin:新建绘图文件": false
     }
   },
-  "active": "8d73f2b7aa75dba5",
+  "active": "dd8f747a2549782a",
   "lastOpenFiles": [
     "许继电气入职学习/00-学习索引.md",
     "许继电气入职学习/01-电路分析/00-电路分析索引.md",
